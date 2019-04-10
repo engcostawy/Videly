@@ -1,0 +1,36 @@
+﻿@model List<Videly.Models.Customer>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Customers</h2>
+@if (Model.Count == 0)
+{
+    <text>No Customers</text>
+}
+else
+{
+    <table class="table table-bordered table-hover">
+        <thead>
+            <th>Customer</th>
+            <th>Membership Type</th>
+        </thead>
+        <tbody>
+            @foreach(var customer in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.ActionLink(customer.Name,"Details", "Customers", routeValues:new { Id= customer.Id },
+   htmlAttributes: null)
+                    </td> 
+                    <td>
+                        @customer.MembershipType.Name
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+
+}
